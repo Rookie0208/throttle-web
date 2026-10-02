@@ -1,0 +1,6 @@
+.DS_Store
+*.apk
+downloads/*.apk
+*.ipa
+downloads/*.ipa
+!downloads/.gitkeep

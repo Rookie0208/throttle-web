@@ -740,3 +740,581 @@ a {
         padding: 4rem 4%;
     }
 }
+
+/* --- Download Page Styles --- */
+.download-hero {
+    min-height: 88vh;
+    padding-bottom: 7rem;
+}
+
+.hero-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: transparent;
+    color: var(--clr-white);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    padding: 0.85rem 2rem;
+    letter-spacing: 1.5px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.hero-btn-secondary:hover {
+    border-color: var(--clr-lime);
+    color: var(--clr-lime);
+    transform: scale(1.04);
+}
+
+.download-platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.download-card {
+    background: var(--clr-white);
+    border: 2px solid #e6e6e6;
+    border-radius: 28px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 20px 45px rgba(12, 12, 12, 0.05);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(12, 12, 12, 0.1);
+}
+
+.download-card.android-card:hover {
+    border-color: var(--clr-lime);
+}
+
+.download-card.ios-card:hover {
+    border-color: var(--clr-black);
+}
+
+.download-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.download-card-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 20px;
+    background: var(--clr-black);
+    color: var(--clr-lime);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.download-card:hover .download-card-icon {
+    transform: scale(1.08) rotate(2deg);
+}
+
+.download-card-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
+}
+
+.download-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.download-badge.badge-lime {
+    background: rgba(217, 255, 95, 0.25);
+    color: #1a1a1a;
+    border: 1px solid rgba(180, 220, 50, 0.45);
+}
+
+.download-badge.badge-dark {
+    background: #f0f0f0;
+    color: #444;
+    border: 1px solid #ddd;
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.download-card-title {
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+}
+
+.download-card-desc {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+}
+
+.download-spec-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+}
+
+.spec-tag {
+    background: #f2f2f2;
+    border: 1px solid #e5e5e5;
+    color: #333;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.download-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: var(--clr-black);
+    color: var(--clr-white);
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    padding: 1.15rem 2rem;
+    border-radius: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.download-card-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.download-card-btn:hover {
+    background: var(--clr-lime);
+    color: var(--clr-black);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(217, 255, 95, 0.35);
+}
+
+.download-card-btn:hover svg {
+    transform: translateY(2px);
+}
+
+.download-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.download-card-footer a {
+    color: #222;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.download-card-footer a:hover {
+    color: #000;
+}
+
+/* Coming Soon Stores Banner */
+.stores-announcement-box {
+    background: linear-gradient(145deg, #161616 0%, #0d0d0d 100%);
+    border: 2px solid rgba(217, 255, 95, 0.3);
+    border-radius: 32px;
+    padding: 3.5rem;
+    color: var(--clr-white);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+.stores-announcement-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(217, 255, 95, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.stores-header {
+    max-width: 780px;
+    margin-bottom: 2.5rem;
+}
+
+.stores-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.store-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.store-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(217, 255, 95, 0.5);
+    transform: translateY(-4px);
+}
+
+.store-card-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-card-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--clr-white);
+}
+
+.store-card-info {
+    flex: 1;
+}
+
+.store-card-subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.store-card-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.store-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(217, 255, 95, 0.15);
+    color: var(--clr-lime);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.notify-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.notify-text {
+    flex: 1;
+    min-width: 260px;
+}
+
+.notify-text h4 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.notify-text p {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.notify-form {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.notify-input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    color: var(--clr-white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    min-width: 240px;
+    transition: border-color 0.3s ease;
+}
+
+.notify-input:focus {
+    border-color: var(--clr-lime);
+}
+
+.notify-input::placeholder {
+    color: #777;
+}
+
+.notify-submit-btn {
+    background: var(--clr-lime);
+    color: var(--clr-black);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 12px;
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.notify-submit-btn:hover {
+    background: var(--clr-white);
+    transform: scale(1.04);
+}
+
+/* Install Steps Section */
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.step-card {
+    background: var(--clr-white);
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    padding: 2.2rem;
+    position: relative;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-6px);
+}
+
+.step-number-tag {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--clr-black);
+    color: var(--clr-lime);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.step-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.step-card p {
+    color: #666;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.step-tip {
+    margin-top: 1.2rem;
+    padding: 0.8rem 1rem;
+    background: #f7f9f3;
+    border-left: 3px solid var(--clr-lime);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #444;
+}
+
+/* Trust / Safety Bar */
+.trust-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid #e6e6e6;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.trust-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    background: rgba(217, 255, 95, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-black);
+}
+
+.trust-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.trust-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.trust-text p {
+    font-size: 0.82rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Toast Message */
+.download-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--clr-black);
+    color: var(--clr-white);
+    border: 2px solid var(--clr-lime);
+    border-radius: 16px;
+    padding: 1.2rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    z-index: 10000;
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.download-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.toast-icon {
+    color: var(--clr-lime);
+    font-size: 1.5rem;
+}
+
+.toast-content h5 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.toast-content p {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .download-platforms-grid {
+        grid-template-columns: 1fr;
+    }
+    .stores-grid {
+        grid-template-columns: 1fr;
+    }
+    .steps-container {
+        grid-template-columns: 1fr;
+    }
+    .stores-announcement-box {
+        padding: 2.2rem 1.8rem;
+    }
+    .notify-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .notify-form {
+        flex-direction: column;
+    }
+    .notify-input {
+        min-width: 100%;
+    }
+}
