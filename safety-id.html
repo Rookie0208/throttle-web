@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle Safety ID - Emergency Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #0a0a0c !important;
+            color: #f4f4f5 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .safety-container {
+            max-width: 600px;
+            margin: 30px auto 80px auto;
+            padding: 0 16px;
+        }
+        .emergency-badge-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(245, 158, 11, 0.12));
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+        }
+        .emergency-tag {
+            background: #ef4444;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        .safety-card {
+            background: #141416;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .rider-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .blood-group-badge {
+            background: rgba(239, 68, 68, 0.16);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ff6b6b;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 6px 14px;
+            border-radius: 12px;
+        }
+        .contact-card {
+            background: #1e1e24;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .call-btn {
+            background: #22c55e;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+        .call-btn:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+        }
+        .fallback-box {
+            text-align: center;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 24px;
+        }
+        .fallback-input {
+            background: #0f0f11;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            margin: 8px 6px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .disabled-banner {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 18px;
+            padding: 24px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="safety-container">
+        <!-- Emergency banner -->
+        <div class="emergency-badge-header">
+            <div>
+                <span class="emergency-tag">Emergency Access</span>
+                <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; margin: 6px 0 0 0; color: #fff;">THROTTLE SAFETY CARD</h2>
+            </div>
+            <div id="safety-id-pill" style="font-family: 'Lexend', sans-serif; font-weight: 700; color: #e4e4e7; font-size: 15px;">TH-RIDER</div>
+        </div>
+
+        <div id="disabled-view" class="disabled-banner">
+            <h3 style="color: #ef4444; margin-top: 0;">Safety ID Disabled</h3>
+            <p id="disabled-msg" style="color: rgba(255,255,255,0.7); margin-bottom: 0;">This Safety ID has been disabled by the rider.</p>
+        </div>
+
+        <div id="active-view">
+            <!-- Rider Profile & Medical Info -->
+            <div class="safety-card">
+                <div class="rider-name-row">
+                    <div>
+                        <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; font-weight: 700;">Rider Profile</span>
+                        <h3 id="rider-name" style="font-family: 'Lexend', sans-serif; font-size: 22px; margin: 4px 0 0 0;">Loading...</h3>
+                    </div>
+                    <div class="blood-group-badge" id="blood-group-display">
+                        --
+                    </div>
+                </div>
+
+                <!-- Medical Tags -->
+                <div style="margin-bottom: 16px;">
+                    <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; font-weight: 700;">Allergies & Reactions</span>
+                    <p id="allergies-text" style="color: #fca5a5; font-size: 14px; margin: 6px 0 0 0; line-height: 1.4;">None recorded</p>
+                </div>
+
+                <div>
+                    <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; font-weight: 700;">Current Medications</span>
+                    <p id="medication-text" style="color: #d4d4d8; font-size: 14px; margin: 6px 0 0 0; line-height: 1.4;">None specified</p>
+                </div>
+            </div>
+
+            <!-- First Responder Instructions -->
+            <div class="safety-card" style="border-left: 4px solid #f59e0b;">
+                <span style="font-size: 12px; color: #fbbf24; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">First Responder Instructions</span>
+                <p id="instructions-text" style="color: #e4e4e7; font-size: 14.5px; margin: 8px 0 0 0; line-height: 1.45;">
+                    In the event of an accident, please call the emergency contacts listed below immediately. Do not remove the rider's helmet unless breathing is obstructed.
+                </p>
+            </div>
+
+            <!-- Emergency Contacts Section -->
+            <div class="safety-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <h4 style="font-family: 'Lexend', sans-serif; font-size: 17px; margin: 0; color: #fff;">Emergency Contacts</h4>
+                    <span style="font-size: 12px; color: rgba(255, 255, 255, 0.45);">Direct Phone Access</span>
+                </div>
+
+                <div id="contacts-list">
+                    <p style="color: rgba(255,255,255,0.4); font-size: 13px;">No emergency contacts listed.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manual Fallback PIN Entry (like Wheelsafar SafeSafar) -->
+        <div class="fallback-box">
+            <p style="font-size: 12.5px; color: rgba(255, 255, 255, 0.6); margin: 0 0 6px 0;">QR code damaged? Lookup manually with ID & PIN:</p>
+            <div>
+                <input type="text" id="manual-id" placeholder="Safety ID (TH-XXXX)" class="fallback-input" style="width: 150px;">
+                <input type="password" id="manual-pin" placeholder="PIN" class="fallback-input" style="width: 80px;">
+                <button onclick="handleManualAccess()" style="background: #e4e4e7; color: #000; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer;">Lookup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const safetyId = urlParams.get('id') || '';
+        const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:8080/api/v1' 
+            : 'https://throttle-app.onrender.com/api/v1'; // standard deployed backend fallback or relative
+
+        if (safetyId) {
+            document.getElementById('safety-id-pill').textContent = safetyId;
+            fetchSafetyData(safetyId);
+        } else {
+            document.getElementById('rider-name').textContent = 'Enter Safety ID below';
+        }
+
+        async function fetchSafetyData(id) {
+            try {
+                // Try backend API first, fallback to mock display if offline
+                const res = await fetch(`${apiBase}/users/safety/${encodeURIComponent(id)}`);
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json.data) {
+                        renderProfile(json.data);
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.warn('API lookup error, using display defaults:', err);
+            }
+            // If API didn't return or was disabled:
+            document.getElementById('rider-name').textContent = 'Throttle Rider';
+        }
+
+        function renderProfile(user) {
+            if (user.safetyEnabled === false) {
+                document.getElementById('active-view').style.display = 'none';
+                document.getElementById('disabled-view').style.display = 'block';
+                if (user.publicMessage) {
+                    document.getElementById('disabled-msg').textContent = user.publicMessage;
+                }
+                return;
+            }
+
+            const name = (user.firstName || '') + ' ' + (user.lastName || '');
+            document.getElementById('rider-name').textContent = name.trim() || 'Throttle Rider';
+            document.getElementById('blood-group-display').textContent = user.bloodGroup || 'Not Set';
+            document.getElementById('allergies-text').textContent = user.allergies || 'None recorded';
+            document.getElementById('medication-text').textContent = user.currentMedication || 'None specified';
+            
+            if (user.emergencyInstructions) {
+                document.getElementById('instructions-text').textContent = user.emergencyInstructions;
+            }
+
+            const contacts = user.emergencyContacts || [];
+            const container = document.getElementById('contacts-list');
+            if (contacts.length > 0) {
+                container.innerHTML = contacts.map(c => `
+                    <div class="contact-card">
+                        <div>
+                            <div style="font-weight: 700; font-size: 15px; color: #fff;">${escapeHtml(c.name || 'Emergency Contact')}</div>
+                            <div style="font-size: 12.5px; color: rgba(255, 255, 255, 0.5);">${escapeHtml(c.relation || 'Contact')} • ${escapeHtml(c.phoneNumber || '')}</div>
+                        </div>
+                        <a href="tel:${escapeHtml(c.phoneNumber || '')}" class="call-btn">
+                            <span>Call</span>
+                        </a>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = '<p style="color: rgba(255,255,255,0.4); font-size: 13px;">No emergency contacts configured.</p>';
+            }
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function handleManualAccess() {
+            const id = document.getElementById('manual-id').value.trim();
+            if (id) {
+                window.location.href = `safety-id.html?id=${encodeURIComponent(id)}`;
+            }
+        }
+    </script>
+</body>
+</html>
