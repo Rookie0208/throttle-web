@@ -5,8 +5,14 @@
     <meta http-equiv="refresh" content="0; url=safety-id.html">
     <title>Redirecting to Safety ID</title>
     <script>
-        // Forward query params (e.g. ?id=TH-XXXX) to safety-id.html
-        window.location.href = "safety-id.html" + window.location.search;
+        // Forward query params (e.g. ?id=TH-XXXX or ?userId=...) to safety-id.html
+        const p = new URLSearchParams(window.location.search);
+        const id = p.get('id') || p.get('userId') || p.get('safetyId') || p.get('riderId') || p.get('user') || '';
+        if (id) {
+            window.location.replace("safety-id.html?id=" + encodeURIComponent(id));
+        } else {
+            window.location.replace("safety-id.html" + window.location.search);
+        }
     </script>
 </head>
 <body>

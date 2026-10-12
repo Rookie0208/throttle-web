@@ -12,6 +12,15 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id') || params.get('userId') || params.get('safetyId') || params.get('riderId') || params.get('user');
+            if (id && id.trim()) {
+                window.location.replace('safety-id.html?id=' + encodeURIComponent(id.trim()));
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Custom Cursor -->

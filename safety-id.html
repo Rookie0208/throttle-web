@@ -124,6 +124,11 @@
 </head>
 <body>
     <div class="safety-container">
+        <div style="margin-bottom: 18px;">
+            <a href="safety.html" style="color: rgba(255, 255, 255, 0.65); text-decoration: none; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255, 255, 255, 0.65)'">
+                <span>&larr;</span> Back to Safety &amp; Tracking
+            </a>
+        </div>
         <!-- Emergency banner -->
         <div class="emergency-badge-header">
             <div>
@@ -197,10 +202,16 @@
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const safetyId = urlParams.get('id') || '';
-        const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-            ? 'http://localhost:8080/api/v1' 
-            : 'https://throttle-app.onrender.com/api/v1'; // standard deployed backend fallback or relative
+        const safetyId = urlParams.get('id') || urlParams.get('userId') || urlParams.get('safetyId') || urlParams.get('riderId') || urlParams.get('user') || '';
+        const apiCandidates = [
+            'http://52.66.165.117:8081/api/v1',
+            'http://localhost:8081/api/v1',
+            'http://localhost:8080/api/v1',
+            'https://throttle-app.onrender.com/api/v1'
+        ];
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            apiCandidates.unshift('http://localhost:8081/api/v1', 'http://localhost:8080/api/v1');
+        }
 
         if (safetyId) {
             document.getElementById('safety-id-pill').textContent = safetyId;
@@ -210,18 +221,24 @@
         }
 
         async function fetchSafetyData(id) {
-            try {
-                // Try backend API first, fallback to mock display if offline
-                const res = await fetch(`${apiBase}/users/safety/${encodeURIComponent(id)}`);
-                if (res.ok) {
-                    const json = await res.json();
-                    if (json.data) {
-                        renderProfile(json.data);
-                        return;
+            for (const base of apiCandidates) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 3500);
+                    const res = await fetch(`${base}/users/safety/${encodeURIComponent(id)}`, {
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    if (res.ok) {
+                        const json = await res.json();
+                        if (json && json.data) {
+                            renderProfile(json.data);
+                            return;
+                        }
                     }
+                } catch (err) {
+                    // Try next backend candidate
                 }
-            } catch (err) {
-                console.warn('API lookup error, using display defaults:', err);
             }
             // If API didn't return or was disabled:
             document.getElementById('rider-name').textContent = 'Throttle Rider';
